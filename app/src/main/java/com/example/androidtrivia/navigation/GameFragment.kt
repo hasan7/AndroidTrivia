@@ -21,11 +21,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
+
 import androidx.fragment.app.Fragment
-import com.example.android.navigation.databinding.FragmentGameBinding
+import com.example.androidtrivia.R
+
+import com.example.androidtrivia.databinding.FragmentGameBinding
+
 
 class GameFragment : Fragment() {
+
+    private lateinit var binding: FragmentGameBinding
+
     data class Question(
             val text: String,
             val answers: List<String>)
@@ -67,16 +73,20 @@ class GameFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
 
         // Inflate the layout for this fragment
-        val binding = DataBindingUtil.inflate<FragmentGameBinding>(
-                inflater, R.layout.fragment_game, container, false)
+        binding = FragmentGameBinding.inflate(inflater, container, false)
+
 
         // Shuffles the questions and sets the question index to the first question.
         randomizeQuestions()
 
         // Bind this fragment class to the layout
-        binding.game = this
+        //
+        //this is for Databinding which is not used in this project
+        //
+        //binding.game = this
 
         // Set the onClickListener for the submitButton
+
         binding.submitButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
         { view: View ->
             val checkedId = binding.questionRadioGroup.checkedRadioButtonId

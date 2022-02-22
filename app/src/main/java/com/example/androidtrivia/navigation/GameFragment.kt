@@ -81,6 +81,7 @@ GameFragment : Fragment() {
         // Shuffles the questions and sets the question index to the first question.
         randomizeQuestions()
 
+
         // Bind this fragment class to the layout
         //
         //this is for Databinding which is not used in this project
@@ -125,6 +126,17 @@ GameFragment : Fragment() {
         return binding.root
     }
 
+    private fun setValues(){
+
+        binding.questionText.text= currentQuestion.text
+
+        binding.firstAnswerRadioButton.text= answers[0]
+        binding.secondAnswerRadioButton.text= answers[1]
+        binding.thirdAnswerRadioButton.text= answers[2]
+        binding.fourthAnswerRadioButton.text= answers[3]
+
+    }
+
     // randomize the questions and set the first question
     private fun randomizeQuestions() {
         questions.shuffle()
@@ -141,5 +153,6 @@ GameFragment : Fragment() {
         // and shuffle them
         answers.shuffle()
         (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.title_android_trivia_question, questionIndex + 1, numQuestions)
+        setValues()
     }
 }

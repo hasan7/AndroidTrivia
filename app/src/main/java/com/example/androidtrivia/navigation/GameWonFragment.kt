@@ -22,6 +22,8 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.example.androidtrivia.R
 import com.example.androidtrivia.databinding.FragmentGameWonBinding
 
 
@@ -33,6 +35,11 @@ class GameWonFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
          binding = FragmentGameWonBinding.inflate(inflater, container, false)
+
+         binding.nextMatchButton.setOnClickListener {
+             view?.findNavController()?.navigate(R.id.action_gameWonFragment_to_gameFragment)
+        }
+
         return binding.root
     }
 }

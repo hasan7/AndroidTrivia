@@ -21,6 +21,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import com.example.androidtrivia.R
 import com.example.androidtrivia.databinding.FragmentGameOverBinding
 
 class GameOverFragment : Fragment() {
@@ -31,6 +33,11 @@ class GameOverFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
          binding = FragmentGameOverBinding.inflate(inflater, container, false)
+
+        binding.tryAgainButton.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_gameOverFragment_to_gameFragment)
+        }
+
         return binding.root
     }
 }

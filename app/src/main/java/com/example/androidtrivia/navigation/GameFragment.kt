@@ -82,12 +82,6 @@ GameFragment : Fragment() {
         randomizeQuestions()
 
 
-        // Bind this fragment class to the layout
-        //
-        //this is for Databinding which is not used in this project
-        //
-        //binding.game = this
-
         // Set the onClickListener for the submitButton
 
         binding.submitButton.setOnClickListener @Suppress("UNUSED_ANONYMOUS_PARAMETER")
@@ -109,12 +103,10 @@ GameFragment : Fragment() {
                     if (questionIndex < numQuestions) {
                         currentQuestion = questions[questionIndex]
                         setQuestion()
-                        // TODO: find a way to set the question/answers  on the textview/RadioButtons
-                        //i think below code only work woth databinding which is removed here
-                        //binding.invalidateAll()
+
                     } else {
                         // We've won!  Navigate to the gameWonFragment.
-                            view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment())
+                            view.findNavController().navigate(GameFragmentDirections.actionGameFragmentToGameWonFragment(numQuestions,questionIndex ))
                     }
                 } else {
                     // Game over! A wrong answer sends us to the gameOverFragment.
